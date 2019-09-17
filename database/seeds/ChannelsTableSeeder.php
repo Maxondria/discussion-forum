@@ -1,6 +1,6 @@
 <?php
 
-use App\Channel;
+use MaxDiscussions\Channel;
 use Illuminate\Database\Seeder;
 
 class ChannelsTableSeeder extends Seeder
