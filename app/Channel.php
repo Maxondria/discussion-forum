@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace MaxDiscussions;
 
 class Channel extends Model
 {

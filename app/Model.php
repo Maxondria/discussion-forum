@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+namespace MaxDiscussions;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace MaxDiscussions\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
