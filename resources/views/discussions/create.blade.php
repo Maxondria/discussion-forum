@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="card">
         <div class="card-header">Add Discussion</div>
 
         <div class="card-body">
+
+            @include('partials.errors')
+
             <form action="{{ route('discussions.store') }}" method="POST">
                 @csrf
 
@@ -15,13 +17,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
+                    <input id="content" type="hidden" name="content">
+                    <trix-editor input="content"></trix-editor>
                 </div>
 
                 <div class="form-group">
-                    <label for="channel">Channel</label>
-                    <select name="channel" id="channel" class="form-control">
+                    <label for="channel_id">Channel</label>
+                    <select name="channel_id" id="channel_id" class="form-control">
                         @foreach($channels as $channel)
                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                         @endforeach
@@ -33,4 +35,13 @@
             </form>
         </div>
     </div>
+@endsection
+
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
+@endsection
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
 @endsection

@@ -3,9 +3,16 @@
 namespace MaxDiscussions\Http\Controllers;
 
 use Illuminate\Http\Request;
+use MaxDiscussions\Discussion;
+use MaxDiscussions\Http\Requests\CreateDiscussionsRequest;
 
 class DiscussionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['create', 'store', 'update', 'edit', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class DiscussionsController extends Controller
      */
     public function index()
     {
-
+        return view('discussions.index', ['discussions' => Discussion::paginate(5)]);
     }
 
     /**
@@ -29,12 +36,18 @@ class DiscussionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateDiscussionsRequest $request
      * @return void
      */
-    public function store(Request $request)
+    public function store(CreateDiscussionsRequest $request)
     {
-        //
+        $data = $request->only(['title', 'content', 'channel_id']);
+        $data['slug'] = str_slug($request->title);
+
+        auth()->user()->discussions()->create($data);
+
+        session()->flash('success', 'Discussion created successfully');
+        return redirect()->route('discussions.index');
     }
 
     /**
