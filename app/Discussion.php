@@ -4,8 +4,8 @@ namespace MaxDiscussions;
 
 class Discussion extends Model
 {
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

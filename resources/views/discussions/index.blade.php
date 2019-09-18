@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-end mb-2">
-        <a href="{{ route('discussions.create') }}" class="btn btn-success">Add Discussion</a>
-    </div>
-
     @foreach($discussions as $discussion)
         <div class="card">
-            <div class="card-header">{{ $discussion->title }}</div>
+            <div class="card-header">
+                <img src="{{ Gravatar::src($discussion->author->email) }}" width="40px" height="40px"
+                     style="border-radius: 50%" alt="">
+                <strong class="ml-2">{{ $discussion->author->name }}</strong>
+            </div>
 
             <div class="card-body">
                 {!! $discussion->content !!}
