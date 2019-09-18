@@ -53,12 +53,12 @@ class DiscussionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Discussion $discussion
      * @return void
      */
-    public function show($id)
+    public function show(Discussion $discussion)
     {
-        //
+        return view('discussions.show', ['discussion' => $discussion]);
     }
 
     /**

@@ -4,14 +4,13 @@
 
     @foreach($discussions as $discussion)
         <div class="card">
-            <div class="card-header">
-                <img src="{{ Gravatar::src($discussion->author->email) }}" width="40px" height="40px"
-                     style="border-radius: 50%" alt="">
-                <strong class="ml-2">{{ $discussion->author->name }}</strong>
-            </div>
+
+            @include('partials.discussions-header')
 
             <div class="card-body">
-                {!! $discussion->content !!}
+                <div class="text-center font-weight-bold">
+                    {{ $discussion->title }}
+                </div>
             </div>
         </div>
     @endforeach
